@@ -1,4 +1,4 @@
-class WarMinifyGrailsPlugin {
+class YuiWarMinifyGrailsPlugin {
 	def version = '1.1-SNAPSHOT'
 	def grailsVersion = "2.0 > *"
 	def title = 'YUI War Minify Plugin'
