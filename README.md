@@ -7,7 +7,7 @@ Grails plugin to run [yui-compressor][1] on css and javascript resources at WAR 
 
 Add the following to the `plugins` closure in `BuildConfig.groovy`:
 
-	build ':yui-war-minify:1.0'
+	build ':yui-war-minify:1.1'
 
 # Notes
 
