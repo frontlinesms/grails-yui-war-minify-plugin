@@ -1,7 +1,7 @@
 Grails War Minify Plugin
 ========================
 
-Grails plugin to run yui-compressor on css and javascript resources at WAR creation time.
+Grails plugin to run [yui-compressor][1] on css and javascript resources at WAR creation time.
 
 # Usage
 
@@ -39,4 +39,6 @@ Currently no settings can be customised, but the following defaults are applied 
 
 * allow configuration of compressor settings
 * allow configuration of verbose output location (file or stream?)
+
+[1]: https://github.com/yui/yuicompressor/
 
