@@ -1,5 +1,5 @@
 class WarMinifyGrailsPlugin {
-	def version = '1.0'
+	def version = '1.1-SNAPSHOT'
 	def grailsVersion = "2.0 > *"
 	def title = "War Minify Plugin" // Headline display name of the plugin
 	def author = 'Alex Anderson'
