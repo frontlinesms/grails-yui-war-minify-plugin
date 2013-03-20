@@ -6,5 +6,8 @@ class YuiWarMinifyGrailsPlugin {
 	def authorEmail = 'http://www.github.com/alxndrsn'
 	def description = 'Grails plugin to run yui-compressor on css and javascript resources at WAR creation time.'
 	def documentation = 'http://github.com/frontlinesms/grails-yui-war-minify-plugin'
+	def license = 'APACHE'
+	def issueManagement = [system: 'GitHub', url: 'https://github.com/frontlinesms/grails-yui-war-minify-plugin/issues']
+	def scm = [url: 'https://github.com/frontlinesms/grails-yui-war-minify-plugin']
 }
 
