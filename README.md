@@ -18,3 +18,25 @@ Minification will only occur on war creation.  Advantages of this over yui-minif
 * no extra resources are required on server
 * still easy to debug javascript and CSS in development mode
 
+# YUI Compressor Settings
+
+Currently no settings can be customised, but the following defaults are applied to the YUI Compressor
+
+## CSS
+
+* line length: -1
+
+## Javascript
+
+* line length: -1
+* munge: true
+* verbose: true
+* verbose output location: target/yuicompressor-javascript-report.txt
+* preserveAllSemiColons: true
+* disableOptimizations: false
+
+# TODO
+
+* allow configuration of compressor settings
+* allow configuration of verbose output location (file or stream?)
+
