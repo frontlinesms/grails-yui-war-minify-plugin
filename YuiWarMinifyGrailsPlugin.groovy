@@ -1,5 +1,5 @@
 class YuiWarMinifyGrailsPlugin {
-	def version = '1.2'
+	def version = '1.3-SNAPSHOT'
 	def grailsVersion = "2.0 > *"
 	def title = 'YUI War Minify Plugin'
 	def author = 'Alex Anderson'
