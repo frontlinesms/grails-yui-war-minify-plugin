@@ -20,25 +20,37 @@ Minification will only occur on war creation.  Advantages of this over yui-minif
 
 # YUI Compressor Settings
 
-Currently no settings can be customised, but the following defaults are applied to the YUI Compressor
-
 ## CSS
 
-* line length: -1
+    // enable/disable CSS minification
+    grails.build.yuiminify.css.enabled = true
+
+    // line break after the specified column number 
+    // or 0 to force line break after each semi-colon
+    grails.build.yuiminify.css.lineBreak = 8000
 
 ## Javascript
 
-* line length: -1
-* munge: true
-* verbose: true
+    // enable/disable JavaScript minification
+    grails.build.yuiminify.js.enabled = true
+
+    // line break after the specified column number
+    // or 0 to force line break after each semi-colon
+    grails.build.yuiminify.js.lineBreak = 8000
+
+    // obfuscate local symbols
+    grails.build.yuiminify.js.munge = true
+
+    // preserve unnecessary semicolons
+    grails.build.yuiminify.js.preserveSemiColons = true
+
+    // enable/disable micro optimizations
+    grails.build.yuiminify.js.optimizations = true
+
 * verbose output location: target/yuicompressor-javascript-report.txt
-* preserveAllSemiColons: true
-* disableOptimizations: false
 
 # TODO
 
-* allow configuration of compressor settings
 * allow configuration of verbose output location (file or stream?)
 
 [1]: https://github.com/yui/yuicompressor/
-
