@@ -60,13 +60,13 @@ eventCreateWarStart = { warName, stagingDir ->
 		}
 	}
 
-	def compressCss = { File source, lineBreak=-1 ->
+	def compressCss = { File source, lineBreak ->
 		compress(source) { reader, writer ->
 			new CssCompressor(reader).compress(writer, lineBreak)
 		}
 	}
 
-	def compressJs = { File source, lineBreak=-1, munge=true, verbose=true, preserveAllSemiColons=true, disableOptimizations=false ->
+	def compressJs = { File source, lineBreak, munge, verbose, preserveAllSemiColons, disableOptimizations ->
 		compress(source) { reader, writer ->
 			new JavaScriptCompressor(reader, createErrorReporter()).compress(writer, lineBreak, munge, verbose, preserveAllSemiColons, disableOptimizations)
 		}
