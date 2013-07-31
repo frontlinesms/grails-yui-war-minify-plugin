@@ -1,9 +1,27 @@
 import com.yahoo.platform.yui.compressor.*
 import org.mozilla.javascript.EvaluatorException
+import grails.util.Holders
+
+
 eventCreateWarStart = { warName, stagingDir ->
 	println "[Events.eventCreateWarStart] ENTRY"
 	println "[Events.eventCreateWarStart] The staging dir is: $stagingDir"
 	println "[Events.eventCreateWarStart] args: $args"
+
+	def flatConfig = Holders.flatConfig
+	def getConfig = { String key, def defaultValue ->
+		flatConfig.containsKey(key) ? flatConfig[key] : defaultValue
+	}
+
+	def options = [
+		cssEnabled: getConfig('grails.build.yuiminify.css.enabled', true),
+		cssLineBreak: getConfig('grails.build.yuiminify.css.lineBreak', 8000),
+		jsEnabled: getConfig('grails.build.yuiminify.js.enabled', true),
+		jsLineBreak: getConfig('grails.build.yuiminify.js.lineBreak', 8000),
+		jsMunge: getConfig('grails.build.yuiminify.js.munge', true),
+		jsPreserveSemiColons: getConfig('grails.build.yuiminify.js.preserveSemiColons', true),
+		jsOptimizations: getConfig('grails.build.yuiminify.js.optimizations', true),
+	]
 
 	def createErrorReporter = {
 		new org.mozilla.javascript.ErrorReporter() {
@@ -36,29 +54,36 @@ eventCreateWarStart = { warName, stagingDir ->
 				compressize(reader, writer)
 			}
 		}
-		outTemp.renameTo(source)
-	}
-
-	def compressCss = { File source ->
-		compress(source) { reader, writer ->
-			new CssCompressor(reader).compress(writer, -1)
+		source.delete()
+		if (!outTemp.renameTo(source)) {
+			println "WARNING: Can't rename ${outTemp.name} to ${source.name}"
 		}
 	}
 
-	def compressJs = { File source, munge=true, verbose=true, preserveAllSemiColons=true, disableOptimizations=false ->
+	def compressCss = { File source, lineBreak ->
 		compress(source) { reader, writer ->
-			new JavaScriptCompressor(reader, createErrorReporter()).compress(writer, -1, munge, verbose, preserveAllSemiColons, disableOptimizations)
+			new CssCompressor(reader).compress(writer, lineBreak)
 		}
 	}
 
-	println "[Events.eventCreateWarStart] Calling YUI compressor on CSS..."
-	new FileNameFinder().getFileNames(stagingDir.absolutePath, '**/*.css', '**/*.min.css').each { fileName ->
-		compressCss(new File(fileName))
+	def compressJs = { File source, lineBreak, munge, verbose, preserveAllSemiColons, disableOptimizations ->
+		compress(source) { reader, writer ->
+			new JavaScriptCompressor(reader, createErrorReporter()).compress(writer, lineBreak, munge, verbose, preserveAllSemiColons, disableOptimizations)
+		}
 	}
 
-	println "[Events.eventCreateWarStart] Calling YUI compressor on Javascript..."
-	new FileNameFinder().getFileNames(stagingDir.absolutePath, '**/*.js', '**/*.min.js').each { fileName ->
-		compressJs(new File(fileName))
+	if (options.cssEnabled) {
+		println "[Events.eventCreateWarStart] Calling YUI compressor on CSS..."
+		new FileNameFinder().getFileNames(stagingDir.absolutePath, '**/*.css', '**/*.min.css').each { fileName ->
+			compressCss(new File(fileName), options.cssLineBreak)
+		}
+	}
+
+	if (options.jsEnabled) {
+		println "[Events.eventCreateWarStart] Calling YUI compressor on Javascript..."
+		new FileNameFinder().getFileNames(stagingDir.absolutePath, '**/*.js', '**/*.min.js').each { fileName ->
+			compressJs(new File(fileName), options.jsLineBreak, options.jsMunge, true, options.jsPreserveSemiColons, !options.jsOptimizations)
+		}
 	}
 }
 
