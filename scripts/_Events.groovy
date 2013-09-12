@@ -16,13 +16,13 @@ eventCreateWarStart = { warName, stagingDir ->
 	def options = [
 		cssEnabled: getConfig('grails.build.yuiminify.css.enabled', true),
 		cssLineBreak: getConfig('grails.build.yuiminify.css.lineBreak', 8000),
-		cssExcludes: getConfig('grails.build.yuiminify.css.excludes', ""),
+		cssExcludes: getConfig('grails.build.yuiminify.css.excludes', ''),
 		jsEnabled: getConfig('grails.build.yuiminify.js.enabled', true),
 		jsLineBreak: getConfig('grails.build.yuiminify.js.lineBreak', 8000),
 		jsMunge: getConfig('grails.build.yuiminify.js.munge', true),
 		jsPreserveSemiColons: getConfig('grails.build.yuiminify.js.preserveSemiColons', true),
 		jsOptimizations: getConfig('grails.build.yuiminify.js.optimizations', true),
-		jsExcludes: getConfig('grails.build.yuiminify.js.excludes', "")
+		jsExcludes: getConfig('grails.build.yuiminify.js.excludes', '')
 	]
 
 	def createErrorReporter = {
