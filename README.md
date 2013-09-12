@@ -29,6 +29,10 @@ Minification will only occur on war creation.  Advantages of this over yui-minif
     // or 0 to force line break after each semi-colon
     grails.build.yuiminify.css.lineBreak = 8000
 
+    // exclude CSS files from minification
+    // comma-separated list; allows wildcards; always excludes '**/*.min.css' even if no option specified
+    grails.build.yuiminify.css.excludes
+
 ## Javascript
 
     // enable/disable JavaScript minification
@@ -46,6 +50,10 @@ Minification will only occur on war creation.  Advantages of this over yui-minif
 
     // enable/disable micro optimizations
     grails.build.yuiminify.js.optimizations = true
+
+    // exclude javascript files from minification
+    // comma-separated list; allows wildcards; always excludes '**/*.min.js' even if no option specified
+    grails.build.yuiminify.js.excludes
 
 * verbose output location: target/yuicompressor-javascript-report.txt
 
