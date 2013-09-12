@@ -3,6 +3,7 @@ plugin.xml
 
 # Prevent plugin binaries from uploading to repo
 *.zip
+*.pom
 
 # Grails build directory
 target/
