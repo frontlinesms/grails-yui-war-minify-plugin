@@ -17,7 +17,10 @@ grails.project.dependency.resolution = {
 		compile 'com.yahoo.platform.yui:yuicompressor:2.4.7'
 	}
 	plugins {
-		build ":tomcat:$grailsVersion", ':release:2.2.1', ':rest-client-builder:1.0.3', {
+		build ":tomcat:$grailsVersion",
+				':release:2.2.1',
+				':rest-client-builder:1.0.3',
+				':bails:0.3.1', {
 			export = false
 		}
 	}
