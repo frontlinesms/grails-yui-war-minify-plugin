@@ -2,7 +2,6 @@ import com.yahoo.platform.yui.compressor.*
 import org.mozilla.javascript.EvaluatorException
 import grails.util.Holders
 
-
 eventCreateWarStart = { warName, stagingDir ->
 	println "[Events.eventCreateWarStart] ENTRY"
 	println "[Events.eventCreateWarStart] The staging dir is: $stagingDir"
