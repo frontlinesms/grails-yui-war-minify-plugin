@@ -14,7 +14,7 @@ grails.project.dependency.resolution = {
 		mavenLocal()
 	}
 	dependencies {
-		compile 'com.yahoo.platform.yui:yuicompressor:2.4.7'
+		compile 'com.yahoo.platform.yui:yuicompressor:2.4.8'
 	}
 	plugins {
 		build ":tomcat:$grailsVersion",
